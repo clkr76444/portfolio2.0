@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Channe Lykke Krog Portfolio</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <header>
@@ -28,17 +28,100 @@
     </header>
     <main>
         <section class="hero">
-        <h1>Channe Lykke Krog</h1>
-        <h3>Multimediedesignerstuderende med passion for design, branding og frontend udvikling.</h3>
+            <div class="hero-blob hero-blob--1" aria-hidden="true"></div>
+            <div class="hero-blob hero-blob--2" aria-hidden="true"></div>
+            <div class="hero-blob hero-blob--3" aria-hidden="true"></div>
+            <div class="hero-blob hero-blob--4" aria-hidden="true"></div>
+            <div class="hero-blob hero-blob--5" aria-hidden="true"></div>
+            <div class="hero-copy">
+                <div class="hero-copy-meta">
+                    <span class="hero-eyebrow">Multimediedesignerstuderende<br> med frontend-fokus</span>
+                </div>
+                <h1>Jeg designer digitale oplevelser med passion og personlighed.</h1>
+            </div>
+        </section>
+
+        <section class="about" aria-labelledby="about-title">
+            <div class="about-image">
+                <img src="img/migcrop.webp" alt="Portræt af Channe Lykke Krog">
+            </div>
+            <div class="about-copy">
+                <span class="hero-eyebrow">Om mig</span>
+                <h2 id="about-title">Hej, jeg er Channe.</h2>
+                <p>Jeg er multimediedesignerstuderende med passion for frontend-udvikling og visuelt design. Jeg elsker at skabe digitale oplevelser, der er intuitive, smukke og gennemtænkte — fra første streg til færdigt produkt.</p>
+                <p>Når jeg ikke designer, finder du mig sandsynligvis med en kop kaffe og en god bog.</p>
+                <a href="#kontakt" class="cta-btn">
+                    <span>Lad os snakke</span>
+                    <svg width="15px" height="10px" viewBox="0 0 13 10" aria-hidden="true">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </section>
+        
+        <section class="testimonial" aria-labelledby="testimonial-title">
+            <blockquote class="testimonial-quote">
+                <p>"Indsæt citat fra din tidligere chef her."</p>
+                <footer>
+                    <cite>Navn, Titel &mdash; Virksomhed</cite>
+                </footer>
+            </blockquote>
+        </section>
+
+        <section class="projects" aria-labelledby="projects-title">
+            <span id="projects-title" class="hero-eyebrow">Udvalgte projekter</span>
+            <div class="projects-carousel" aria-label="Projektkarusel">
+                <div class="projects-slider">
+                    <button class="project-arrow project-arrow-prev" type="button" aria-label="Forrige projekt">
+                        <span aria-hidden="true">&#8592;</span>
+                    </button>
+                    <div class="projects-viewport">
+                        <div class="project-track"></div>
+                    </div>
+                    <button class="project-arrow project-arrow-next" type="button" aria-label="Naeste projekt">
+                        <span aria-hidden="true">&#8594;</span>
+                    </button>
+                </div>
+                <div class="project-pagination" aria-label="Vae lg projekt"></div>
+            </div>
+            <a href="projekter.html" class="cta-btn">
+                <span>Se alle projekter</span>
+                <svg width="15px" height="10px" viewBox="0 0 13 10" aria-hidden="true">
+                    <path d="M1,5 L11,5"></path>
+                    <polyline points="8 1 12 5 8 9"></polyline>
+                </svg>
+            </a>
+        </section>
+
+        <section class="testimonial" aria-labelledby="testimonial-title">
+            <blockquote class="testimonial-quote">
+                <p>"Indsæt citat fra din tidligere chef her."</p>
+                <footer>
+                    <cite>Navn, Titel &mdash; Virksomhed</cite>
+                </footer>
+            </blockquote>
         </section>
     </main>
     <footer>
         <h6>All rights reserved 2026 Channe Lykke Krog.</h6>
     </footer>
+    <script src="burgermenu.js" defer></script>
+    <script src="carousel.js" defer></script>
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
 
-
-
-
-    <script src="js/burgermenu.js" defer></script>
+        document.querySelectorAll('main section:not(.hero)').forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
