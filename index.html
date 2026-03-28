@@ -10,10 +10,10 @@
     <header>
         <div class="off-screen-menu" id="mobile-menu">
             <ul>
-                <li><a href="#">Forside</a></li>
-                <li><a href="#">Om mig</a></li>
-                <li><a href="#">Projekter</a></li>
-                <li><a href="#">Kontakt</a></li>
+                <li><a href="index.html">Forside</a></li>
+                <li><a href="about.html">Om mig</a></li>
+                <li><a href="portfolio.html">Projekter</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
             </ul>
         </div>
         <div class="menu-overlay" aria-hidden="true"></div>
@@ -50,7 +50,7 @@
                 <h2 id="about-title">Hej, jeg er Channe.</h2>
                 <p>Jeg er multimediedesignerstuderende med passion for frontend-udvikling og visuelt design. Jeg elsker at skabe digitale oplevelser, der er intuitive, smukke og gennemtænkte — fra første streg til færdigt produkt.</p>
                 <p>Når jeg ikke designer, finder du mig sandsynligvis med en kop kaffe og en god bog.</p>
-                <a href="#kontakt" class="cta-btn">
+                <a href="contact.html" class="cta-btn">
                     <span>Lad os snakke</span>
                     <svg width="15px" height="10px" viewBox="0 0 13 10" aria-hidden="true">
                         <path d="M1,5 L11,5"></path>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="project-pagination" aria-label="Vae lg projekt"></div>
             </div>
-            <a href="projekter.html" class="cta-btn">
+            <a href="portfolio.html" class="cta-btn">
                 <span>Se alle projekter</span>
                 <svg width="15px" height="10px" viewBox="0 0 13 10" aria-hidden="true">
                     <path d="M1,5 L11,5"></path>
@@ -106,22 +106,8 @@
     <footer>
         <h6>All rights reserved 2026 Channe Lykke Krog.</h6>
     </footer>
-    <script src="burgermenu.js" defer></script>
-    <script src="carousel.js" defer></script>
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('main section:not(.hero)').forEach(el => {
-            el.classList.add('fade-in');
-            observer.observe(el);
-        });
-    </script>
+    <script src="/js/burgermenu.js" defer></script>
+    <script src="/js/carousel.js" defer></script>
+    <script src="/js/scroll-observer.js" defer></script>
 </body>
 </html>

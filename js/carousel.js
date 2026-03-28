@@ -1,3 +1,143 @@
+const toolMeta = {
+    Ai: { mark: 'Ai', label: 'Illustrator' },
+    Ps: { mark: 'Ps', label: 'Photoshop' },
+    Figma: { mark: '', label: 'Figma', iconSrc: 'img/figma-logo-o.svg' },
+    HTML: { mark: '</>', label: 'HTML' },
+    CSS: { mark: '{ }', label: 'CSS' },
+    JS: { mark: 'JS', label: 'JavaScript' }
+};
+
+const createToolMark = (tool, meta) => {
+    const toolMark = document.createElement('span');
+
+    toolMark.className = 'project-tool-mark';
+
+    if (meta.iconSrc) {
+        const icon = document.createElement('img');
+
+        toolMark.classList.add('project-tool-mark-figma');
+
+        icon.className = 'project-tool-icon';
+        icon.src = meta.iconSrc;
+        icon.alt = `${meta.label} logo`;
+        toolMark.appendChild(icon);
+
+        return toolMark;
+    }
+
+    toolMark.textContent = meta.mark || tool;
+    return toolMark;
+};
+
+// Gør det muligt at linke et helt card til en HTML-side ved at wrappe det i et <a>-tag, hvis der er angivet et link
+const createProjectCard = ({ label, title, description, tools = [], link }) => {
+    const article = document.createElement('article');
+    const content = document.createElement('div');
+    const toolList = document.createElement('div');
+    const labelElement = document.createElement('p');
+    const titleElement = document.createElement('h3');
+    const descriptionElement = document.createElement('p');
+
+    article.className = 'project-card';
+    content.className = 'project-card-content';
+    toolList.className = 'project-card-tools';
+    labelElement.className = 'project-label';
+
+    tools.forEach((tool) => {
+        const toolBadge = document.createElement('span');
+        const toolText = document.createElement('span');
+        const meta = toolMeta[tool] || { mark: tool, label: tool };
+        const toolMark = createToolMark(tool, meta);
+
+        toolBadge.className = `project-tool project-tool-${tool.toLowerCase()}`;
+        toolText.className = 'project-tool-text';
+        toolText.textContent = meta.label;
+        toolBadge.append(toolMark, toolText);
+        toolList.appendChild(toolBadge);
+    });
+
+    labelElement.textContent = label;
+    titleElement.textContent = title;
+    descriptionElement.textContent = description;
+
+    const imageSlot = document.createElement('div');
+    imageSlot.className = 'project-card-image';
+
+    content.append(labelElement, titleElement, descriptionElement, toolList);
+    article.append(content, imageSlot);
+
+    // Hvis der er et link, gør cardet klikbart og naviger til linket ved klik
+    if (link) {
+        article.addEventListener('click', () => {
+            window.location.href = link;
+        });
+        article.style.cursor = 'pointer';
+    }
+    return article;
+};
+
+const projects = [
+    {
+        label: 'Branding',
+        title: 'Visuel identitet',
+        description: 'Et koncept for et moderne brand med fokus pa typografi, farver og digital tilstedevaerelse.',
+        tools: ['Ai'],
+        link: 'index.html'
+    },
+    {
+        label: 'Frontend',
+        title: 'Landing page',
+        description: 'En responsiv prototype med tydeligt hierarki, rolige overgange og fokus pa brugeroplevelsen.',
+        tools: ['Ps'],
+        link: 'index.html'
+    },
+    {
+        label: 'Design',
+        title: 'Kampagneunivers',
+        description: 'Et kreativt univers med sammenhaeng mellem grafiske elementer, budskab og maalsaetning.',
+        tools: ['Figma'],
+        link: 'design.html'
+    },
+    {
+        label: 'Kode',
+        title: 'Interaktiv prototype',
+        description: 'Plads til et projekt bygget med HTML, CSS og JavaScript med fokus pa struktur, styling og interaktion.',
+        tools: ['HTML', 'CSS', 'JS'],
+        link: 'index.html'
+    },
+    {
+        label: 'UX',
+        title: 'Brugerundersoegelse',
+        description: 'En analyse af brugerbehov og adfaerd med wireframes og testresultater som grundlag for design.',
+        tools: ['Figma'],
+        link: 'index.html'
+    }
+];
+
+const projectsGrid = document.querySelector('.projects-grid');
+
+if (projectsGrid) {
+    projects.forEach((project) => {
+        const card = createProjectCard(project);
+        card.classList.add('fade-in');
+        projectsGrid.appendChild(card);
+    });
+    // Observer for fade-in
+    if (window.IntersectionObserver) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        projectsGrid.querySelectorAll('.project-card').forEach(card => {
+            observer.observe(card);
+        });
+    }
+}
+
 const projectCarousel = document.querySelector('.projects-carousel');
 
 if (projectCarousel) {
@@ -5,32 +145,6 @@ if (projectCarousel) {
     const projectPagination = projectCarousel.querySelector('.project-pagination');
     const previousArrow = projectCarousel.querySelector('.project-arrow-prev');
     const nextArrow = projectCarousel.querySelector('.project-arrow-next');
-    const projects = [
-        {
-            label: 'Branding',
-            title: 'Visuel identitet',
-            description: 'Et koncept for et moderne brand med fokus pa typografi, farver og digital tilstedevaerelse.',
-            tools: ['Ai']
-        },
-        {
-            label: 'Frontend',
-            title: 'Landing page',
-            description: 'En responsiv prototype med tydeligt hierarki, rolige overgange og fokus pa brugeroplevelsen.',
-            tools: ['Ps']
-        },
-        {
-            label: 'Design',
-            title: 'Kampagneunivers',
-            description: 'Et kreativt univers med sammenhaeng mellem grafiske elementer, budskab og maalsaetning.',
-            tools: ['Figma']
-        },
-        {
-            label: 'Kode',
-            title: 'Interaktiv prototype',
-            description: 'Plads til et projekt bygget med HTML, CSS og JavaScript med fokus pa struktur, styling og interaktion.',
-            tools: ['HTML', 'CSS', 'JS']
-        }
-    ];
     const mobileBreakpoint = 699;
     const tabletBreakpoint = 1023;
     let slidesPerView = 3;
@@ -38,74 +152,8 @@ if (projectCarousel) {
     let cloneCount = 0;
     let isTransitioning = false;
     let startX = 0;
-    const toolMeta = {
-        Ai: { mark: 'Ai', label: 'Illustrator' },
-        Ps: { mark: 'Ps', label: 'Photoshop' },
-        Figma: { mark: '', label: 'Figma', iconSrc: 'img/figma-logo-o.svg' },
-        HTML: { mark: '</>', label: 'HTML' },
-        CSS: { mark: '{ }', label: 'CSS' },
-        JS: { mark: 'JS', label: 'JavaScript' }
-    };
 
-    const createToolMark = (tool, meta) => {
-        const toolMark = document.createElement('span');
-
-        toolMark.className = 'project-tool-mark';
-
-        if (meta.iconSrc) {
-            const icon = document.createElement('img');
-
-            toolMark.classList.add('project-tool-mark-figma');
-
-            icon.className = 'project-tool-icon';
-            icon.src = meta.iconSrc;
-            icon.alt = `${meta.label} logo`;
-            toolMark.appendChild(icon);
-
-            return toolMark;
-        }
-
-        toolMark.textContent = meta.mark || tool;
-        return toolMark;
-    };
-
-    const createProjectCard = ({ label, title, description, tools = [] }) => {
-        const article = document.createElement('article');
-        const content = document.createElement('div');
-        const toolList = document.createElement('div');
-        const labelElement = document.createElement('p');
-        const titleElement = document.createElement('h3');
-        const descriptionElement = document.createElement('p');
-
-        article.className = 'project-card';
-        content.className = 'project-card-content';
-        toolList.className = 'project-card-tools';
-        labelElement.className = 'project-label';
-
-        tools.forEach((tool) => {
-            const toolBadge = document.createElement('span');
-            const toolText = document.createElement('span');
-            const meta = toolMeta[tool] || { mark: tool, label: tool };
-            const toolMark = createToolMark(tool, meta);
-
-            toolBadge.className = `project-tool project-tool-${tool.toLowerCase()}`;
-            toolText.className = 'project-tool-text';
-            toolText.textContent = meta.label;
-            toolBadge.append(toolMark, toolText);
-            toolList.appendChild(toolBadge);
-        });
-
-        labelElement.textContent = label;
-        titleElement.textContent = title;
-        descriptionElement.textContent = description;
-
-        content.append(labelElement, titleElement, descriptionElement, toolList);
-        article.appendChild(content);
-
-        return article;
-    };
-
-    projects.forEach((project) => {
+    projects.slice(0, 4).forEach((project) => {
         projectTrack.appendChild(createProjectCard(project));
     });
 
