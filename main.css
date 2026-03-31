@@ -18,6 +18,7 @@
     --color-cta: #dfc4e0;
 }
 
+
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
@@ -37,13 +38,32 @@ main {
 }
 
 h1,
-h2,
-h3,
 h4,
 h5,
 h6 {
     margin: 0;
     padding: 0;
+}
+
+h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin: 0;
+    padding: 0;
+    color: var(--color-text-inverse);
+    text-align: center;
+}
+
+h3 {
+    display: block;
+    margin-top: 5%;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    white-space: nowrap;
 }
 
 h6 {
@@ -56,6 +76,72 @@ p {
     line-height: 1.6;
 }
 
+/* ============================== Call-to-action button styling ============================== */
+.cta-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 18px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-decoration: none;
+    align-self: start;
+    transition: all 0.2s ease;
+}
+
+.cta-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    border-radius: 50px;
+    background: var(--color-cta);
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
+}
+
+.cta-btn span {
+    position: relative;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--color-text);
+}
+
+.cta-btn svg {
+    position: relative;
+    top: 0;
+    margin-left: 10px;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: var(--color-text);
+    stroke-width: 2;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+}
+
+/* Hover effects only on devices that support hover and have a fine pointer */
+@media (hover: hover) and (pointer: fine) {
+    .cta-btn:hover::before {
+        width: 100%;
+        background: var(--color-cta);
+    }
+
+    .cta-btn:hover svg {
+        transform: translateX(0);
+    }
+}
+
+.cta-btn:active {
+    transform: scale(0.95);
+}
+
+/* ============================== Hero section with animated blobs ============================== */
 .hero {
     position: relative;
     margin-top: calc(-1 * var(--space-xl));
@@ -120,6 +206,7 @@ p {
     animation: blob-float-5 11s ease-in-out infinite;
 }
 
+/* ======================== Keyframes for blob floating animations ======================== */
 @keyframes blob-float-1 {
     0%   { transform: translate(0, 0) scale(1); }
     25%  { transform: translate(120px, 70px) scale(1.2); }
@@ -160,14 +247,15 @@ p {
     100% { transform: translate(0, 0) scale(1); }
 }
 
+/* Hero content styling */
 .hero-copy {
     position: relative;
     z-index: 1;
     display: grid;
     align-content: end;
     gap: var(--space-md);
-    max-width: min(28rem, 100%);
     padding: 0;
+
 }
 
 .hero-copy-meta {
@@ -196,76 +284,8 @@ p {
     color: var(--color-text-inverse);
 }
 
-.hero-intro {
-    max-width: 28rem;
-    font-size: 0.98rem;
-    color: rgba(255, 255, 255, 0.86);
-}
 
-.cta-btn {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    padding: 12px 18px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    text-decoration: none;
-    align-self: start;
-    transition: all 0.2s ease;
-}
-
-.cta-btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    border-radius: 50px;
-    background: var(--color-cta);
-    width: 45px;
-    height: 45px;
-    transition: all 0.3s ease;
-}
-
-.cta-btn span {
-    position: relative;
-    font-family: inherit;
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    color: var(--color-text);
-}
-
-.cta-btn svg {
-    position: relative;
-    top: 0;
-    margin-left: 10px;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke: var(--color-text);
-    stroke-width: 2;
-    transform: translateX(-5px);
-    transition: all 0.3s ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .cta-btn:hover::before {
-        width: 100%;
-        background: var(--color-cta);
-    }
-
-    .cta-btn:hover svg {
-        transform: translateX(0);
-    }
-}
-
-.cta-btn:active {
-    transform: scale(0.95);
-}
-
-
+/* ============================== About section styling ============================== */
 .about {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -294,6 +314,7 @@ p {
     gap: var(--space-lg);
 }
 
+/* Make all direct children of .about-copy span the full width of the grid, except for the .cta-btn */
 .about-copy > :not(.cta-btn) {
     grid-column: 1 / -1;
 }
@@ -312,7 +333,7 @@ p {
 }
 
 
-
+/* Responsive adjustments for smaller screens */
 @media (max-width: 699px) {
     .about {
         grid-template-columns: 1fr;
@@ -327,13 +348,14 @@ p {
     }
 }
 
+/* ============================== Projects section styling ============================== */
 .projects {
     max-width: 1120px;
-    margin: var(--space-2xl) auto;
+    margin: var(--space-xl) auto;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: start;
-    gap: var(--space-lg);
+    gap: var(--space-xl);
 }
 
 .projects > * {
@@ -344,10 +366,10 @@ p {
     font-size: clamp(3rem, 3vw, 3.5rem);
     line-height: 1.08;
     letter-spacing: -0.04em;
-    max-width: 11ch;
     color: var(--color-text-inverse);
-    margin-left: 10%;
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-xs);
+    margin-top: var(--space-lg);
+    text-align: center;
 }
 
 .projects > .cta-btn {
@@ -366,6 +388,8 @@ p {
     gap: var(--space-lg);
 }
 
+
+/* Responsive adjustments for smaller screens */
 @media (max-width: 1023px) {
     .projects-grid {
         grid-template-columns: 1fr;
@@ -376,6 +400,7 @@ p {
     }
 }
 
+/* For larger screens, adjust the project card layout to be horizontal with an image on the left and content on the right */
 .projects-grid .project-card {
     flex: unset;
     min-height: 400px;
@@ -394,6 +419,7 @@ p {
     display: none;
 }
 
+/* Show the project image on larger screens and style it as a left-aligned thumbnail */
 .projects-grid .project-card-image {
     display: block;
     flex: 0 0 40%;
@@ -402,18 +428,20 @@ p {
     overflow: hidden;
 }
 
+/* Show the project image on larger screens and style it as a left-aligned thumbnail */
 .projects-slider {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
     gap: var(--space-md);
 }
-
+/* Hide the navigation arrows on smaller screens */
 .projects-viewport {
     overflow: hidden;
     padding: 0.25rem 0.15rem 0.5rem;
 }
 
+/* Show the project track as a horizontal flex container on larger screens */
 .project-track {
     display: flex;
     gap: var(--space-lg);
@@ -421,6 +449,7 @@ p {
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+/* Style the project cards with a layered background effect using pseudo-elements */
 .project-card {
     position: relative;
     min-height: 320px;
@@ -439,6 +468,7 @@ p {
     transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+/* Create layered background effects using ::before and ::after pseudo-elements */
 .project-card::after {
     position: absolute;
     content: "";
@@ -449,16 +479,19 @@ p {
     z-index: -1;
 }
 
+/* Hide the ::before pseudo-element on larger screens to simplify the design */
 .project-card::before {
     display: none;
 }
 
+/* Position the ::after pseudo-element at the bottom-left corner and style it with a rounded shape */
 .project-card::after {
     bottom: 0;
     left: 0;
     border-radius: 0 100% 0 15px;
 }
 
+/* Position the project content at the bottom of the card and create space for the tools section */
 .project-card-content {
     position: relative;
     display: flex;
@@ -468,6 +501,7 @@ p {
     height: 100%;
 }
 
+/* Style the project title and description with a smooth color transition on hover */
 .project-card-tools {
     display: flex;
     flex-wrap: wrap;
@@ -475,6 +509,7 @@ p {
     margin-top: 0.65rem;
 }
 
+/* Style the project tools as pill-shaped badges with a layered background effect */
 .project-tool {
     min-width: 4.6rem;
     padding: 0.28rem 0.5rem 0.28rem 0.28rem;
@@ -490,6 +525,7 @@ p {
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
+/* Style the project tool marks as smaller circles with a layered background effect */
 .project-tool-mark {
     width: 1.6rem;
     height: 1.6rem;
@@ -503,6 +539,7 @@ p {
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
+/* Special styling for the Figma tool mark to create a clean, icon-only badge */
 .project-tool-mark-figma {
     padding: 0;
     background: #fff;
@@ -510,6 +547,7 @@ p {
     overflow: hidden;
 }
 
+/* Style the icons within the Figma tool mark to fit perfectly inside the circular badge */
 .project-tool-icon {
     width: 100%;
     height: 100%;
@@ -517,12 +555,14 @@ p {
     display: block;
 }
 
+/* Style the project tool text with uppercase letters and a smaller font size */
 .project-tool-text {
     font-size: 0.64rem;
     line-height: 1.1;
     text-transform: uppercase;
 }
 
+/* Custom background and text colors for each project tool type */
 .project-tool-ai {
     background: #2d1500;
     color: #ff9a00;
@@ -553,6 +593,7 @@ p {
     color: #f7df1e;
 }
 
+/* Adjust the font size and letter spacing for the project tool marks to create a more compact and cohesive look */
 .project-tool-html .project-tool-mark,
 .project-tool-css .project-tool-mark,
 .project-tool-js .project-tool-mark {
@@ -560,6 +601,7 @@ p {
     letter-spacing: 0.02em;
 }
 
+/* Add a subtle layered background effect to the project tool marks to create depth and visual interest */
 .project-tool-ai .project-tool-mark,
 .project-tool-ps .project-tool-mark,
 .project-tool-figma .project-tool-mark,
@@ -569,6 +611,7 @@ p {
     background: rgba(255, 255, 255, 0.1);
 }
 
+/* Style the project label with uppercase letters, increased letter spacing, and a smaller font size to create a distinct visual hierarchy */
 .project-label {
     font-size: 0.8rem;
     font-weight: 700;
@@ -577,11 +620,14 @@ p {
     color: var(--color-accent);
 }
 
+/* Add smooth color transitions to the project title and description for a more polished hover effect */
+
 .project-card h3,
 .project-card p {
     transition: color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+/* Style the project navigation arrows as circular buttons with a layered background effect and smooth hover transitions */
 .project-arrow {
     width: 38px;
     height: 38px;
@@ -597,16 +643,19 @@ p {
     transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Style the arrow icons within the project navigation arrows to fit perfectly inside the circular buttons */
 .project-arrow span {
     font-size: 0.95rem;
     line-height: 1;
 }
 
+/* Add a focus-visible outline to the project navigation arrows for improved accessibility */
 .project-arrow:focus-visible {
     outline: 2px solid var(--color-surface);
     outline-offset: 4px;
 }
 
+ /* Style the project pagination dots as circular buttons with a layered background effect and smooth hover transitions */
 .project-pagination {
     display: flex;
     justify-content: center;
@@ -614,6 +663,7 @@ p {
     gap: var(--space-sm);
 }
 
+/* Style the project pagination dots with a default background color and a smooth transition for hover and active states */
 .project-dot {
     width: 12px;
     height: 12px;
@@ -635,6 +685,7 @@ p {
     outline-offset: 3px;
 }
 
+/* Add hover effects only on devices that support hover and have a fine pointer to enhance interactivity without affecting touch devices */
 @media (hover: hover) and (pointer: fine) {
     .project-card:hover {
         transform: translateY(-4px);
@@ -721,6 +772,7 @@ p {
     z-index: 10;
 }
 
+/* Show the menu overlay when the off-screen menu is active to create a modal effect and prevent interaction with the underlying content */
 .menu-overlay.active {
     opacity: 1;
     visibility: visible;
@@ -791,6 +843,7 @@ p {
     color: var(--color-accent);
 }
 
+/* ==== Hover effects only on devices that support hover and have a fine pointer ==== */
 @media (hover: hover) and (pointer: fine) {
     .off-screen-menu a:hover {
         box-shadow: 0 8px 18px rgba(255, 209, 220, 0.12);
@@ -802,7 +855,7 @@ p {
         width: 100%;
     }
 }
-
+/* Staggered animation delays for menu items */
 .off-screen-menu li:nth-child(1) a {
     transition-delay: 0.05s;
 }
@@ -819,6 +872,7 @@ p {
     transition-delay: 0.2s;
 }
 
+/* Navigation and footer styling */
 nav {
     padding: 1rem var(--page-gutter);
     display: flex;
@@ -833,6 +887,7 @@ footer {
     padding: 0 var(--page-gutter) 1rem;
 }
 
+/* Hamburger menu styling */
 .hamburger {
     height: 2rem;
     width: 2rem;
@@ -849,6 +904,7 @@ footer {
     z-index: 30;
 }
 
+/* Hamburger bars */
 .hamburger span {
     height: 1px;
     width: calc(1.15rem + 1px);
@@ -861,7 +917,7 @@ footer {
     transform-origin: center;
     transition: transform 0.3s ease, opacity 0.2s ease, top 0.3s ease, background-color 0.2s ease;
 }
-
+/* Position the three bars of the hamburger menu with equal spacing */
 .hamburger span:nth-child(1) {
     top: calc(50% - 0.36rem);
 }
@@ -931,6 +987,7 @@ footer {
     transform: none;
 }
 
+/* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
     .fade-in {
         opacity: 1;
@@ -938,7 +995,7 @@ footer {
         transition: none;
     }
 }
-
+/* Disable animations and transitions for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .off-screen-menu,
     .menu-overlay,
@@ -955,6 +1012,14 @@ footer {
     }
 }
 
+.projects img {
+    display: block;
+    width: 50%;
+    height: 100%;
+    margin: auto;
+    }
+
+/* ==================== Small screens ====== (up to 699px) */
 @media (max-width: 699px) {
     main {
         padding: var(--space-lg) var(--page-gutter) var(--space-xl);
@@ -1087,6 +1152,8 @@ footer {
     }
 }
 
+/* ==================== Medium screens ====== (700px - 1023px) */
+
 @media (min-width: 700px) and (max-width: 1023px) {
     .hero {
         min-height: calc(28rem + 220px);
@@ -1152,34 +1219,13 @@ footer {
     font-size: clamp(3rem, 3vw, 3.5rem);
     line-height: 1.08;
     letter-spacing: -0.04em;
-    max-width: 11ch;
     color: var(--color-text-inverse);
-    margin-left: 25%;
     margin-bottom: var(--space-xl);
-}
-    
-}
-
-@media (min-width: 700px) {
-    nav {
-        padding: 1.25rem var(--page-gutter);
-    }
-
-    .off-screen-menu {
-        width: min(30vw, 300px);
-    }
-
-    .projects h2 {
-    font-size: clamp(3.5rem, 3vw, 4rem);
-    line-height: 1.08;
-    letter-spacing: -0.04em;
-    max-width: 11ch;
-    color: var(--color-text-inverse);
-    margin-left: 25%;
-    margin-bottom: var(--space-xl);
+    text-align: center;
 }
 }
 
+/* ==================== Large screens ====== (1024px and above) */
 @media (min-width: 1024px) {
     nav,
     main,
@@ -1209,9 +1255,9 @@ footer {
     font-size: clamp(4rem, 3vw, 4.5rem);
     line-height: 1.08;
     letter-spacing: -0.04em;
-    max-width: 11ch;
     color: var(--color-text-inverse);
-    margin-left: 28%;
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-xs);
+    margin-top: var(--space-md);
+    text-align: center;
 }
 }
