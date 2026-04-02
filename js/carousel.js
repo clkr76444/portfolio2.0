@@ -4,7 +4,8 @@ const toolMeta = {
     Figma: { mark: '', label: 'Figma', iconSrc: 'img/figma-logo-o.svg' },
     HTML: { mark: '</>', label: 'HTML' },
     CSS: { mark: '{ }', label: 'CSS' },
-    JS: { mark: 'JS', label: 'JavaScript' }
+    JS: { mark: 'JS', label: 'JavaScript' },
+    React: { mark: '⚛', label: 'React' }
 };
 
 const createToolMark = (tool, meta) => {
@@ -95,8 +96,8 @@ const projects = [
     },
     {
         label: 'Design',
-        description: 'Et skoleprojekt, som udviklede sig til et virkeligt produkt: En app til planlægning af frivilligvagter for en festival, designet i Figma og implementeret i React Native.',
-        tools: ['Figma', 'HTML', 'CSS', 'JS'],
+        description: 'Et skoleprojekt, som udviklede sig til et virkeligt produkt:<br>En app til planlægning af frivilligvagter for en festival, designet i Figma og implementeret i React Native.',
+        tools: ['Figma', 'React'],
         link: 'design.html',
         imageSrc: 'img/word.png',
         imageAlt: 'Eksempel på projekt: Word Festival',

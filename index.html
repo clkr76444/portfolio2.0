@@ -8,8 +8,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Licorice&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main.css">
+
+    <script src="/js/burgermenu.js" defer></script>
+    <script src="/js/page-loader.js" defer></script>
+    <script src="/js/carousel.js" defer></script>
+    <script src="/js/scroll-observer.js" defer></script>
+    
 </head>
 <body class="home-page">
+    <div class="page-loader" aria-hidden="true">
+        <div class="page-loader__inner">
+            <span class="page-loader__spinner"></span>
+        </div>
+    </div>
     <header>
         <div class="off-screen-menu" id="mobile-menu">
             <ul>
@@ -56,9 +67,9 @@
             </div>
             <div class="about-copy">
                 <h4 id="about-title">Hej, jeg hedder <span class="signature-name">Channe</span></h4>
-                <p>Jeg er multimediedesignerstuderende med passion for frontend-udvikling og visuelt design. Jeg elsker at skabe digitale oplevelser, der er intuitive, smukke og gennemtænkte — fra første streg til færdigt produkt.</p>
-                <p>Når jeg ikke designer, finder du mig sandsynligvis med en kop kaffe og en god bog.</p>
-                <a href="contact.html" class="cta-btn">
+                <p>Jeg er multimediedesignerstuderende med passion for frontend-udvikling og visuelt design. Jeg elsker at skabe digitale oplevelser, der er intuitive, smukke og gennemtænkte.<br> Min styrke ligger i krydsfeltet mellem design og kode.</p>
+                <p>Når jeg ikke designer, lader jeg højest sandsynligt op på sofaen med en god serie på Netflix eller på en gåtur i skoven.</p>
+                <a href="contact.html" class="cta-btn cta-btn--half-fill">
                     <span>Lad os snakke</span>
                     <svg width="15px" height="10px" viewBox="0 0 13 10" aria-hidden="true">
                         <path d="M1,5 L11,5"></path>
@@ -70,9 +81,9 @@
         
         <section class="testimonial" aria-labelledby="testimonial-title">
             <blockquote class="testimonial-quote">
-                <p>"Indsæt citat fra din tidligere chef her."</p>
+                <p>"I den tid, vi arbejdede sammen, var Channe en uvurderlig ressource for vores team. (...) Jeg giver min fulde anbefaling af Channe og er sikker på, at hun vil være en værdifuld tilføjelse til enhver virksomhed eller projekt, hun vælger at engagere sig i fremover."</p>
                 <footer>
-                    <cite>Navn, Titel &mdash; Virksomhed</cite>
+                    <cite>Nickie, Sommelier og restaurantchef &mdash; Brasserie Bordeaux</cite>
                 </footer>
             </blockquote>
         </section>
@@ -102,20 +113,10 @@
             </a>
         </section>
 
-        <section class="testimonial" aria-labelledby="testimonial-title">
-            <blockquote class="testimonial-quote">
-                <p>"Indsæt citat fra din tidligere chef her."</p>
-                <footer>
-                    <cite>Navn, Titel &mdash; Virksomhed</cite>
-                </footer>
-            </blockquote>
-        </section>
     </main>
     <footer>
         <h6>All rights reserved 2026 by Channe Lykke Krog &mdash; Senest opdateret: 2/4-2026</h6>
     </footer>
-    <script src="/js/burgermenu.js" defer></script>
-    <script src="/js/carousel.js" defer></script>
-    <script src="/js/scroll-observer.js" defer></script>
+ 
 </body>
 </html>
