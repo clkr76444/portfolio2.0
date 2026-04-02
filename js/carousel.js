@@ -30,7 +30,7 @@ const createToolMark = (tool, meta) => {
 };
 
 // Gør det muligt at linke et helt card til en HTML-side ved at wrappe det i et <a>-tag, hvis der er angivet et link
-const createProjectCard = ({ label, description, tools = [], link }) => {
+const createProjectCard = ({ label, title, description, tools = [], link, imageSrc = 'img/baggrund.webp', imageAlt }) => {
     const article = document.createElement('article');
     const content = document.createElement('div');
     const toolList = document.createElement('div');
@@ -57,10 +57,15 @@ const createProjectCard = ({ label, description, tools = [], link }) => {
     });
 
     labelElement.textContent = label;
-    descriptionElement.textContent = description;
+    descriptionElement.innerHTML = description;
 
     const imageSlot = document.createElement('div');
+    const image = document.createElement('img');
     imageSlot.className = 'project-card-image';
+    image.src = imageSrc;
+    image.alt = imageAlt || `${title || label} projekt`;
+    image.loading = 'lazy';
+    imageSlot.appendChild(image);
 
     content.append(labelElement, descriptionElement, toolList);
     article.append(content, imageSlot);
@@ -77,36 +82,33 @@ const createProjectCard = ({ label, description, tools = [], link }) => {
 
 const projects = [
     {
-        label: 'Branding',
-        title: 'Visuel identitet',
-        description: 'Et koncept for et moderne brand med fokus pa typografi, farver og digital tilstedevaerelse.',
+        label: 'Illustration',
+        description: 'En illustration lavet i Adobe Illustrator. <br>Lavet med pen-tool og maaaange lag.',
         tools: ['Ai'],
         link: 'index.html'
     },
     {
         label: 'Frontend',
-        title: 'Landing page',
         description: 'En responsiv prototype med tydeligt hierarki, rolige overgange og fokus pa brugeroplevelsen.',
         tools: ['Ps'],
         link: 'index.html'
     },
     {
         label: 'Design',
-        title: 'Kampagneunivers',
-        description: 'Et kreativt univers med sammenhaeng mellem grafiske elementer, budskab og maalsaetning.',
-        tools: ['Figma'],
-        link: 'design.html'
+        description: 'Et skoleprojekt, som udviklede sig til et virkeligt produkt: En app til planlægning af frivilligvagter for en festival, designet i Figma og implementeret i React Native.',
+        tools: ['Figma', 'HTML', 'CSS', 'JS'],
+        link: 'design.html',
+        imageSrc: 'img/word.png',
+        imageAlt: 'Eksempel på projekt: Word Festival',
     },
     {
         label: 'Kode',
-        title: 'Interaktiv prototype',
         description: 'Plads til et projekt bygget med HTML, CSS og JavaScript med fokus pa struktur, styling og interaktion.',
         tools: ['HTML', 'CSS', 'JS'],
         link: 'index.html'
     },
     {
         label: 'UX',
-        title: 'Brugerundersoegelse',
         description: 'En analyse af brugerbehov og adfaerd med wireframes og testresultater som grundlag for design.',
         tools: ['Figma'],
         link: 'index.html'

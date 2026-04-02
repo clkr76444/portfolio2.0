@@ -288,13 +288,21 @@ p {
     order: 1;
 }
 
-.about-image {
+.about-copy {
     order: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+}
+
+.about-image {
+    order: 3;
     border-radius: 20px;
     overflow: hidden;
     aspect-ratio: 4 / 5;
     width: 75%;
     margin: 0 auto;
+    transform: scale(0.85);
 }
 
 .about-image img {
@@ -302,13 +310,6 @@ p {
     height: 100%;
     object-fit: cover;
     display: block;
-}
-
-.about-copy {
-    order: 3;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
 }
 
 .about-copy h2 {
@@ -1146,6 +1147,7 @@ nav {
         width: auto;
         margin: 0;
         order: unset;
+        transform: scale(1);
     }
 
     .project-card {
@@ -1289,6 +1291,13 @@ nav {
         border-radius: 10px;
         background: var(--color-accent-soft);
         overflow: hidden;
+    }
+
+    .projects-grid .project-card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
     }
 
     .project-card {
