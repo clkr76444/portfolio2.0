@@ -30,18 +30,18 @@ const createToolMark = (tool, meta) => {
 };
 
 // Gør det muligt at linke et helt card til en HTML-side ved at wrappe det i et <a>-tag, hvis der er angivet et link
-const createProjectCard = ({ label, title, description, tools = [], link }) => {
+const createProjectCard = ({ label, description, tools = [], link }) => {
     const article = document.createElement('article');
     const content = document.createElement('div');
     const toolList = document.createElement('div');
     const labelElement = document.createElement('p');
-    const titleElement = document.createElement('h3');
     const descriptionElement = document.createElement('p');
 
     article.className = 'project-card';
     content.className = 'project-card-content';
     toolList.className = 'project-card-tools';
     labelElement.className = 'project-label';
+    descriptionElement.className = 'project-card-description';
 
     tools.forEach((tool) => {
         const toolBadge = document.createElement('span');
@@ -57,13 +57,12 @@ const createProjectCard = ({ label, title, description, tools = [], link }) => {
     });
 
     labelElement.textContent = label;
-    titleElement.textContent = title;
     descriptionElement.textContent = description;
 
     const imageSlot = document.createElement('div');
     imageSlot.className = 'project-card-image';
 
-    content.append(labelElement, titleElement, descriptionElement, toolList);
+    content.append(labelElement, descriptionElement, toolList);
     article.append(content, imageSlot);
 
     // Hvis der er et link, gør cardet klikbart og naviger til linket ved klik
@@ -232,7 +231,7 @@ if (projectCarousel) {
         projectPagination.innerHTML = '';
 
         originalSlides.forEach((slide, index) => {
-            const heading = slide.querySelector('h3');
+            const heading = slide.querySelector('.project-label');
             const dot = document.createElement('button');
 
             dot.className = 'project-dot';

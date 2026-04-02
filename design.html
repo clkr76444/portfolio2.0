@@ -6,7 +6,7 @@
     <title>Channe Lykke Krog Portfolio</title>
     <link rel="stylesheet" href="main.css">
 </head>
-<body>
+<body class="design-page">
     <header>
         <div class="off-screen-menu" id="mobile-menu">
             <ul>
@@ -26,19 +26,72 @@
             </button>
         </nav>
     </header>
-    <main>
-        <section class="projects" aria-labelledby="projects-title">
-            <h2>Design</h2>
+    <main class="design-main">
+        <nav class="breadcrumb" aria-label="Brødkrumme">
+            <ol>
+                <li><a href="index.html">Forside</a></li>
+                <li><a href="portfolio.html">Projekter</a></li>
+                <li aria-current="page">Word Festival</li>
+            </ol>
+        </nav>
+        <section class="projects design-hero fade-in" aria-labelledby="design-title">
+            <p class="design-kicker">Case</p>
+            <div class="project-card-tools design-hero-tools">
+                <span class="project-tool project-tool-figma">
+                    <span class="project-tool-mark project-tool-mark-figma">
+                        <img class="project-tool-icon" src="img/figma-logo-o.svg" alt="Figma logo">
+                    </span>
+                    <span class="project-tool-text">Figma</span>
+                </span>
+                <span class="project-tool project-tool-html">
+                    <span class="project-tool-mark">&lt;/&gt;</span>
+                    <span class="project-tool-text">HTML</span>
+                </span>
+                <span class="project-tool project-tool-css">
+                    <span class="project-tool-mark">{ }</span>
+                    <span class="project-tool-text">CSS</span>
+                </span>
+                <span class="project-tool project-tool-js">
+                    <span class="project-tool-mark">JS</span>
+                    <span class="project-tool-text">JavaScript</span>
+                </span>
+            </div>
+            <h2 id="design-title">Word Festival vagtplan system</h2>
+            <p class="design-lead">Fra skoleprojekt til reel løsning: <br>Vi har designet og videreudviklet en brugervenlig app, der gør planlægning af frivilligvagter enkel for både administratorer og brugere.</p>
         </section>
 
-        <section class="projects" aria-labelledby="projects-title">
-            <p>Dette projekt startede som vores andet projekt på 1. semester. Vi skulle udvikle en prototype i Figma til et vagtplansystem til Word festivals frivillige. Efterfølgende blev vi kontaktet af Word festival for at videreudvikle løsningen og implementere den i praksis.</p>
-            <img src="/img/word.png" alt="Billede der indikerer at projektet er under udvikling">
+        <section class="projects design-grid" aria-label="Projektbeskrivelse">
+            <article class="design-card fade-in" aria-labelledby="baggrund-title">
+                <div class="design-card-body">
+                    <h3 id="baggrund-title">Baggrund</h3>
+                    <p>Dette projekt startede som vores andet projekt på 1. semester. Vi skulle udvikle en prototype i Figma til et vagtplansystem til Word Festivals frivillige. Efter vores fiktive forloeb blev vi kontaktet af Word Festival for at videreudvikle loesningen og implementere den i praksis.</p>
+                </div>
+                <img src="/img/word.png" alt="Preview af designprojektet for Word Festival">
+            </article>
+
+            <article class="design-card fade-in" aria-labelledby="losning-title">
+                <div class="design-card-body">
+                    <h3 id="losning-title">Løsningen</h3>
+                    <p>Festivalen anvendte tidligere Excel, men oplevede udfordringer, saerligt fordi mange frivillige har begraenset digital erfaring. Maalet var derfor at skabe et simpelt og intuitivt system for baade administratorer og brugere.</p>
+                    <ul>
+                        <li>Se og vaelge vagter</li>
+                        <li>Administrere vagtplaner</li>
+                        <li>Navigere uden teknisk erfaring</li>
+                    </ul>
+                </div>
+                <img src="/img/word.png" alt="Skitse og designretning for den nye vagtplan-app">
+            </article>
+
+            <article class="design-card fade-in" aria-labelledby="videre-title">
+                <div class="design-card-body">
+                    <h3 id="videre-title">Videreudvikling</h3>
+                    <p>Efter skoleprojektet sluttede, blev vi kontaktet af festivalen for at videreudvikle loesningen og hjaelpe dem med at bringe appen paa markedet. Lanceringsmaelet er efteraaret 2026.</p>
+                    <p>Her er vores Figma-prototype gaaet fra at vaere et interaktivt mock-up til en interaktiv online prototype, som vi tester. I videreudviklingen arbejder vi med Supabase, Node.js og React.js.</p>
+                    <p>Projektet er stadig under udvikling, og vi er inviteret til at praesentere loesningen for festivalen for at sikre, at den opfylder deres behov.</p>
+                </div>
+                <img src="/img/word.png" alt="Videreudviklet prototype klar til test og praesentation">
+            </article>
         </section>
-        
-        <section class="projects" aria-labelledby="projects-title">
-            <h3>Dette projekt er under udvikling.</h3>
-            <img src="/img/word.png" alt="Billede der indikerer at projektet er under udvikling">
     </main>
     <footer>
         <h6>All rights reserved 2026 Channe Lykke Krog.</h6>
