@@ -91,7 +91,7 @@ const projects = [
         label: 'Word Festival App',
         description: 'Et skoleprojekt, som udviklede sig til et virkeligt produkt:<br>En app til planlægning af frivilligvagter for en festival, designet i Figma og implementeret i React Native.',
         tools: ['Figma', 'React', 'TS'],
-        link: 'portfolio/index.html',
+        link: 'portfolio/',
         imageSrc: 'img/word.png',
         imageAlt: 'Eksempel på projekt: Word Festival',
     },
@@ -99,7 +99,7 @@ const projects = [
         label: 'Illustrator',
         description: 'CTA-plakat designet til et Photoshop kursus med tydelig visuel hierarki og call-to-action.',
         tools: ['Ai'],
-        link: 'illustrator/index.html',
+        link: 'illustrator/',
         imageSrc: 'img/Plakat_opdateret.png',
         imageAlt: 'Illustrator projekt: CTA-plakat',
     },
@@ -107,19 +107,19 @@ const projects = [
         label: 'Coming soon!',
         description: 'Coming soon!',
         tools: ['HTML', 'CSS', 'JS'],
-        link: 'portfolio/index.html'
+        link: 'portfolio/'
     },
     {
         label: 'Coming soon!',
         description: 'Coming soon!',
         tools: ['Ps'],
-        link: 'portfolio/index.html'
+        link: 'portfolio/'
     },
     {
         label: 'Coming soon!',
         description: 'Coming soon!',
         tools: [],
-        link: 'portfolio/index.html'
+        link: 'portfolio/'
     }
 ];
 
