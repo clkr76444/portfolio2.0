@@ -1,3 +1,7 @@
+const isNestedPage = /\/(about|contact|portfolio|wordfestival)\//.test(window.location.pathname);
+const rootPrefix = isNestedPage ? '../' : '';
+const toRootPath = (path) => `${rootPrefix}${path}`;
+
 const toolMeta = {
     Ai: { mark: 'Ai', label: 'Illustrator' },
     Ps: { mark: 'Ps', label: 'Photoshop' },
@@ -5,6 +9,7 @@ const toolMeta = {
     HTML: { mark: '</>', label: 'HTML' },
     CSS: { mark: '{ }', label: 'CSS' },
     JS: { mark: 'JS', label: 'JavaScript' },
+    TS: { mark: 'TS', label: 'TypeScript' },
     React: { mark: '⚛', label: 'React' }
 };
 
@@ -19,7 +24,7 @@ const createToolMark = (tool, meta) => {
         toolMark.classList.add('project-tool-mark-figma');
 
         icon.className = 'project-tool-icon';
-        icon.src = meta.iconSrc;
+        icon.src = toRootPath(meta.iconSrc);
         icon.alt = `${meta.label} logo`;
         toolMark.appendChild(icon);
 
@@ -63,7 +68,7 @@ const createProjectCard = ({ label, title, description, tools = [], link, imageS
     const imageSlot = document.createElement('div');
     const image = document.createElement('img');
     imageSlot.className = 'project-card-image';
-    image.src = imageSrc;
+    image.src = toRootPath(imageSrc);
     image.alt = imageAlt || `${title || label} projekt`;
     image.loading = 'lazy';
     imageSlot.appendChild(image);
@@ -74,7 +79,7 @@ const createProjectCard = ({ label, title, description, tools = [], link, imageS
     // Hvis der er et link, gør cardet klikbart og naviger til linket ved klik
     if (link) {
         article.addEventListener('click', () => {
-            window.location.href = link;
+            window.location.href = toRootPath(link);
         });
         article.style.cursor = 'pointer';
     }
@@ -83,36 +88,38 @@ const createProjectCard = ({ label, title, description, tools = [], link, imageS
 
 const projects = [
     {
-        label: 'Illustration',
-        description: 'En illustration lavet i Adobe Illustrator. <br>Lavet med pen-tool og maaaange lag.',
-        tools: ['Ai'],
-        link: 'index.html'
-    },
-    {
-        label: 'Frontend',
-        description: 'En responsiv prototype med tydeligt hierarki, rolige overgange og fokus pa brugeroplevelsen.',
-        tools: ['Ps'],
-        link: 'index.html'
-    },
-    {
-        label: 'Design',
+        label: 'Word Festival App',
         description: 'Et skoleprojekt, som udviklede sig til et virkeligt produkt:<br>En app til planlægning af frivilligvagter for en festival, designet i Figma og implementeret i React Native.',
-        tools: ['Figma', 'React'],
-        link: 'design.html',
+        tools: ['Figma', 'React', 'TS'],
+        link: 'portfolio/index.html',
         imageSrc: 'img/word.png',
         imageAlt: 'Eksempel på projekt: Word Festival',
     },
     {
-        label: 'Kode',
-        description: 'Plads til et projekt bygget med HTML, CSS og JavaScript med fokus pa struktur, styling og interaktion.',
-        tools: ['HTML', 'CSS', 'JS'],
-        link: 'index.html'
+        label: 'Illustrator',
+        description: 'CTA-plakat designet til et Photoshop kursus med tydelig visuel hierarki og call-to-action.',
+        tools: ['Ai'],
+        link: 'illustrator/index.html',
+        imageSrc: 'img/Plakat_opdateret.png',
+        imageAlt: 'Illustrator projekt: CTA-plakat',
     },
     {
-        label: 'UX',
-        description: 'En analyse af brugerbehov og adfaerd med wireframes og testresultater som grundlag for design.',
-        tools: ['Figma'],
-        link: 'index.html'
+        label: 'Coming soon!',
+        description: 'Coming soon!',
+        tools: ['HTML', 'CSS', 'JS'],
+        link: 'portfolio/index.html'
+    },
+    {
+        label: 'Coming soon!',
+        description: 'Coming soon!',
+        tools: ['Ps'],
+        link: 'portfolio/index.html'
+    },
+    {
+        label: 'Coming soon!',
+        description: 'Coming soon!',
+        tools: [],
+        link: 'portfolio/index.html'
     }
 ];
 

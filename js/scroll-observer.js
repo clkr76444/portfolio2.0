@@ -9,7 +9,7 @@ const observer = new IntersectionObserver((entries) => {
 
 const targets = new Set();
 
-document.querySelectorAll('main section:not(.hero)').forEach(el => {
+document.querySelectorAll('main section:not(.hero):not(.no-observe)').forEach(el => {
     el.classList.add('fade-in');
     targets.add(el);
 });

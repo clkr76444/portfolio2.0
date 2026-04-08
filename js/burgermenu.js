@@ -46,7 +46,30 @@ if (hamburger && offScreenMenu && menuOverlay) {
         });
     });
 
-    setActiveMenuLink(menuLinks[0]);
+    const normalizePath = (path) => {
+        const cleanedPath = (path || '/').replace(/\\/g, '/').replace(/\/+$/, '') || '/';
+
+        if (cleanedPath === '/index.html') {
+            return '/';
+        }
+
+        return cleanedPath.replace(/\/index\.html$/i, '') || '/';
+    };
+
+    const currentPath = normalizePath(window.location.pathname);
+
+    const initialActiveLink = Array.from(menuLinks).find((link) => {
+        const href = link.getAttribute('href');
+
+        if (!href) {
+            return false;
+        }
+
+        const linkPath = normalizePath(new URL(href, window.location.href).pathname);
+        return linkPath === currentPath;
+    }) || menuLinks[0];
+
+    setActiveMenuLink(initialActiveLink);
 
     document.addEventListener('click', (event) => {
         if (isMenuOpen() && !offScreenMenu.contains(event.target) && !hamburger.contains(event.target)) {
