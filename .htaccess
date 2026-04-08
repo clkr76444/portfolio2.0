@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Fjern index.html fra URL
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html
+RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
+
+# Sørg for at mapper virker uden index.html
+DirectoryIndex index.html
